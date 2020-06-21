@@ -3,11 +3,24 @@
 /* margin-left: 35%;
   margin-top: 130px; */
 /* } */
+
+/* Hilfe von Max */
 .flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* viewpointwidth,viewpointheight = beschreibt Fläche von Browser, die man sieht (100%) */
 }
+
+#p5canvas canvas {
+  width: 100% !important;
+  max-width: 1344px;
+  height: auto !important;
+}
+/* !important = höhere Priorität? Canvas soll immer höhe von...und weite von...haben, egal wie es skaliert wird */
 /* canvas#defaultCanvas0 {
   position: absolute;
   top: 0;

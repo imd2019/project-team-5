@@ -5,7 +5,9 @@ export default class Button {
     this.width = width;
     this.height = height;
   }
-  display() {}
+  display() {
+    rect(this.x, this.y, this.width, this.height);
+  }
   hitTest(x, y) {
     if (
       x > this.x &&
@@ -20,7 +22,7 @@ export default class Button {
   }
   clicked() {}
   mouseClicked() {
-    if (this.hitTest(mouseX, mouseY) === true) {
+    if (this.hitTest(mouseX, mouseY)) {
       this.clicked();
     }
   }

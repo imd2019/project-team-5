@@ -11,6 +11,8 @@ export default class Satisfaction {
     rect(this.x, this.y, this.width, this.height);
   }
   decrease() {
-    this.width = this.width - 1;
+    if (this.width >= 0) {
+      this.width = this.width - 1;
+    }
   }
 }

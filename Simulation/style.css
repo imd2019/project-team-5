@@ -1,9 +1,3 @@
-/* body {
-  /* padding: 0; */
-/* margin-left: 35%;
-  margin-top: 130px; */
-/* } */
-
 /* Hilfe von Max */
 .flex-container {
   display: flex;
@@ -21,9 +15,3 @@
   height: auto !important;
 }
 /* !important = höhere Priorität? Canvas soll immer höhe von...und weite von...haben, egal wie es skaliert wird */
-/* canvas#defaultCanvas0 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-} */

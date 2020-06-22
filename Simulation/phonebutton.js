@@ -6,7 +6,7 @@ export default class Phonebutton extends Button {
   }
   display() {
     fill("black");
-    rect(this.x + 394, this.y + 510, this.width + 42, this.height + 35);
+    rect(this.x, this.y, this.width, this.height);
   }
   // hitTest() {
   //   if (mouseX > 394 && mouseY > 510 && mouseX < 432 && mouseY < 545) {

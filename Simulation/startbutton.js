@@ -7,9 +7,9 @@ export default class Startbutton extends Button {
   display() {
     fill("black");
     push();
-    translate(this.x + 824, this.y + 496);
+    translate(this.x, this.y);
     rotate(0.05);
-    rect(0, 0, this.width + 339, this.height + 72);
+    rect(0, 0, this.width, this.height);
     pop();
   }
   clicked() {

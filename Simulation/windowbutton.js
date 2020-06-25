@@ -1,29 +1,26 @@
 import Button from "./button.js";
 export default class Windowbutton extends Button {
-  constructor(x1, y1, x2, y2, x3, y3, x4, y4) {
-    super();
-    this.x1 = x1;
-    this.x2 = x2;
-    this.x3 = x3;
-    this.x4 = x4;
-    this.y1 = y1;
-    this.y2 = y2;
-    this.y3 = y3;
-    this.y4 = y4;
+  constructor(x, y, width, height) {
+    super(x, y, width, height);
+    this.looking = false;
+    this.time = 0;
   }
-  display() {
-    fill("black");
-    quad(
-      this.x1,
-      this.y1,
-      this.x2,
-      this.y2,
-      this.x3,
-      this.y3,
-      this.x4,
-      this.y4
-    );
+  display(windowHover, watchWindow) {
+    if (this.hitTest(mouseX, mouseY)) {
+      image(windowHover, 0, 0);
+    }
+    if (this.looking === true) {
+      image(watchWindow, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.looking = false;
+      }
+    }
   }
 
-  clicked() {}
+  clicked() {
+    if (this.looking === false) {
+      this.looking = true;
+    }
+  }
 }

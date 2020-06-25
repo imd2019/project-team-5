@@ -2,17 +2,14 @@ import Button from "./button.js";
 export default class Startbutton extends Button {
   constructor(x, y, width, height) {
     super(x, y, width, height);
-    this.showScreen1 = false;
+    this.showIntro = false;
   }
-  display() {
-    fill("black");
-    push();
-    translate(this.x, this.y);
-    rotate(0.05);
-    rect(0, 0, this.width, this.height);
-    pop();
+  display(startHover) {
+    if (this.hitTest(mouseX, mouseY)) {
+      image(startHover, 0, 0);
+    }
   }
   clicked() {
-    this.showScreen1 = true;
+    this.showIntro = true;
   }
 }

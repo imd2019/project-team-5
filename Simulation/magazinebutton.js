@@ -3,9 +3,10 @@ export default class Magazinebutton extends Button {
   constructor(x, y, width, height) {
     super(x, y, width, height);
   }
-  display() {
-    fill("black");
-    rect(this.x, this.y, this.width, this.height);
+  display(magazineHover) {
+    if (this.hitTest(mouseX, mouseY)) {
+      image(magazineHover, 0, 0);
+    }
   }
 
   clicked() {}

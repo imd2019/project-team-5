@@ -4,7 +4,11 @@ export default class Phonebutton extends Button {
     super(x, y, width, height);
     this.phone = false;
     this.optionCall = new Button(418, 485, 36, 20);
+    this.optionCall.clicked = function () {
+      //brauche ich eine extra Klasse dafür?
+    };
     this.optionVisit = new Button(377, 485, 36, 20);
+    this.optionVisit.clicked = function () {};
     this.call = false;
     this.visit = false;
   }

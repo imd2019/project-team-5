@@ -1,7 +1,10 @@
-import Button from "./button.js";
-export default class Nextbutton extends Button {
+// import Button from "./button.js";
+import Startbutton from "./startbutton.js";
+export default class Nextbutton extends Startbutton {
   constructor(x, y, width, height) {
     super(x, y, width, height);
+    // this.startButton.showIntro = true;
+    this.showPhase1 = false;
     this.showScreen1 = false;
   }
   display(nextHover) {
@@ -12,6 +15,13 @@ export default class Nextbutton extends Button {
     }
   }
   clicked() {
+    // if (this.startButton.showIntro === true) {
+    //   this.showPhase1 = true;
+    // }
+    // if (this.showPhase1 === true) {
+    //   this.showPhase1 = false;
+    //   this.showScreen1 = true;
+    // }
     this.showScreen1 = true;
   }
 }

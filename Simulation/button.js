@@ -1,5 +1,8 @@
-export default class Button {
+import Satisfaction from "./satisfaction.js";
+export default class Button extends Satisfaction {
   constructor(x, y, width, height) {
+    super();
+    //Variablen der anderen Klasse eintragen? Oder Parameter?
     this.x = x;
     this.y = y;
     this.width = width;

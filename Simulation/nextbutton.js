@@ -4,8 +4,10 @@ export default class Nextbutton extends Button {
   constructor(x, y, width, height) {
     super(x, y, width, height);
     // this.startButton.showIntro = true;
-    this.showPhase1 = false;
+    // this.showPhase1 = false;
     this.showScreen1 = false;
+    this.showPhase2 = true;
+    this.state = "intro";
     // this.nextButton2 = new Button(992, 637, 292, 58);
     // this.nextButton2.clicked = () => {
     //   this.showPhase1 = false;
@@ -25,7 +27,25 @@ export default class Nextbutton extends Button {
     //   image(screen1, 0, 0);
     // }
   }
+  get() {
+    return this.showScreen1;
+  }
+  getState() {
+    return this.state;
+  }
+  // get(x) {
+  //   return showScreen[x];
+  // }
   clicked() {
+    if (this.state === "intro") {
+      this.state = "phase1";
+    } else if (this.state === "phase1") {
+      this.state = "screen1";
+    } else if (this.state === "phase2") {
+      //this.state = "phase3";
+      this.showPhase2 = false;
+    }
+    console.log(this.state);
     // if (this.startButton.showIntro === true) {
     //   this.showPhase1 = true;
     // }

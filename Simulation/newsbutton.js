@@ -13,11 +13,11 @@ export default class Newsbutton extends Button {
       }
     };
   }
-  display(news, newsHover, message1) {
+  display(news, newsHover, message1, state) {
     // fill("black");
     // rect(this.x, this.y, this.width, this.height);
     this.time++;
-    if (this.time >= 150 && this.show === true) {
+    if (this.time >= 150 && this.show === true && state === "screen1") {
       image(news, 0, 0);
       if (this.hitTest(mouseX, mouseY) && this.message === false) {
         image(newsHover, 0, 0);

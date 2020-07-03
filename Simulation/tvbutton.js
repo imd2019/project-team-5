@@ -5,12 +5,23 @@ export default class Tvbutton extends Button {
     this.watching = false;
     this.time = 0;
   }
-  display(tvHover, watchTv) {
-    if (this.hitTest(mouseX, mouseY)) {
+  display(tvHover, tvHover2, watchTv, watchTv2, showScreen1, showScreen2) {
+    if (this.hitTest(mouseX, mouseY) && showScreen1 === true) {
       image(tvHover, 0, 0);
     }
-    if (this.watching === true) {
+    if (this.hitTest(mouseX, mouseY) && showScreen2 === true) {
+      image(tvHover2, 0, 0);
+    }
+
+    if (this.watching === true && showScreen1 === true) {
       image(watchTv, 0, 0);
+      this.time++;
+      if (this.time % 300 === 0) {
+        this.watching = false;
+      }
+    }
+    if (this.watching === true && showScreen2 === true) {
+      image(watchTv2, 0, 0);
       this.time++;
       if (this.time % 300 === 0) {
         this.watching = false;

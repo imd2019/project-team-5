@@ -10,8 +10,20 @@ export default class Phonebutton extends Button {
         this.call = true;
       }
     };
+    this.optionCall2 = new Button(366, 375, 36, 20);
+    this.optionCall2.clicked = () => {
+      if (this.phone === true) {
+        this.call = true;
+      }
+    };
     this.optionVisit = new Button(418, 485, 36, 20);
     this.optionVisit.clicked = () => {
+      if (this.phone === true) {
+        this.visit = true;
+      }
+    };
+    this.optionVisit2 = new Button(407, 375, 36, 20);
+    this.optionVisit2.clicked = () => {
       if (this.phone === true) {
         this.visit = true;
       }
@@ -20,12 +32,35 @@ export default class Phonebutton extends Button {
     this.visit = false;
     this.time = 0;
   }
-  display(phoneHover, phoneOptions, callHover, visitHover, call, visit, skala) {
-    if (this.hitTest(mouseX, mouseY)) {
+  display(
+    phoneHover,
+    phoneHover2,
+    phoneHover3,
+    phoneOptions,
+    phoneOptions2,
+    callHover,
+    callHover2,
+    visitHover,
+    visitHover2,
+    call,
+    call2,
+    call3,
+    visit,
+    visit2,
+    showScreen1,
+    showScreen2,
+    showScreen3
+  ) {
+    if (this.hitTest(mouseX, mouseY) && showScreen1 === true) {
       image(phoneHover, 0, 0);
     }
-
-    if (this.phone === true) {
+    if (this.hitTest(mouseX, mouseY) && showScreen2 === true) {
+      image(phoneHover2, 0, 0);
+    }
+    if (this.hitTest(mouseX, mouseY) && showScreen3 === true) {
+      image(phoneHover3, 0, 0);
+    }
+    if (this.phone === true && showScreen1 === true) {
       image(phoneOptions, 0, 0);
       if (this.optionCall.hitTest(mouseX, mouseY)) {
         image(callHover, 0, 0);
@@ -34,8 +69,17 @@ export default class Phonebutton extends Button {
         image(visitHover, 0, 0);
       }
     }
+    if (this.phone === true && showScreen2 === true) {
+      image(phoneOptions2, 0, 0);
+      if (this.optionCall2.hitTest(mouseX, mouseY)) {
+        image(callHover2, 0, 0);
+      }
+      if (this.optionVisit2.hitTest(mouseX, mouseY)) {
+        image(visitHover2, 0, 0);
+      }
+    }
 
-    if (this.call === true) {
+    if (this.call === true && showScreen1 === true) {
       image(call, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
@@ -43,7 +87,15 @@ export default class Phonebutton extends Button {
         this.call = false;
       }
     }
-    if (this.visit === true) {
+    if (this.call === true && showScreen2 === true) {
+      image(call2, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+        this.call = false;
+      }
+    }
+    if (this.visit === true && showScreen1 === true) {
       image(visit, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
@@ -51,14 +103,27 @@ export default class Phonebutton extends Button {
         this.visit = false;
       }
     }
-    /*neues Objekt xy als Parameter display() mitgeben, 
-  dann kann man auch auf xy.clicked und co zugreifen
-  innerhalb der display()-Methode*/
+    if (this.visit === true && showScreen2 === true) {
+      image(visit2, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+        this.visit = false;
+      }
+    }
+    if (this.phone === true && showScreen3 === true) {
+      image(call3, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+      }
+    }
   }
 
   clicked() {
     if (this.phone === false) {
       this.phone = true;
+      // console.log(this.phone);
     }
   }
 }

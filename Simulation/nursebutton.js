@@ -4,7 +4,8 @@ export default class Nursebutton extends Button {
     super(x, y, width, height);
     this.time = 0;
     this.talk = false;
-    this.show = false;
+    this.show = true;
+    this.action = false;
   }
   display(
     nurse,
@@ -21,7 +22,7 @@ export default class Nursebutton extends Button {
   ) {
     // this.time++;
     // if (this.time >= 900 && this.time < 1110) {
-    this.show = true;
+    // this.show = true;
 
     //Screen1
     if (this.show === true && showScreen1 === true) {
@@ -29,15 +30,24 @@ export default class Nursebutton extends Button {
       if (this.hitTest(mouseX, mouseY)) {
         image(nurseHover, 0, 0);
       }
-      if (this.talk === true && state === "screen1") {
+    }
+    if (this.talk === true && state === "screen1" && showScreen1 === true) {
+      this.time++;
+      image(talkPhase1, 0, 0);
+      if (this.time % 300 === 0) {
+        this.talk = false;
+        this.show = false;
+      }
+
+      if (this.talk === true && state === "phase2" && showScreen1 === true) {
         this.time++;
-        image(talkPhase1, 0, 0);
+        image(talkPhase2, 0, 0);
         if (this.time % 300 === 0) {
           this.talk = false;
           this.show = false;
         }
       }
-      if (this.talk === true && state === "phase2") {
+      if (this.talk === true && state === "phase3" && showScreen1 === true) {
         this.time++;
         image(talkPhase2, 0, 0);
         if (this.time % 300 === 0) {
@@ -48,21 +58,31 @@ export default class Nursebutton extends Button {
     }
 
     //Screen2
-    if (this.show === true && state === "screen1" && showScreen2 === true) {
+    if (this.show === true && showScreen2 === true) {
+      console.log("hey");
       image(nurse2, 0, 0);
       if (this.hitTest(mouseX, mouseY)) {
         image(nurseHover2, 0, 0);
       }
-      if (this.talk === true) {
-        this.time++;
-        image(talk2Phase1, 0, 0);
-        if (this.time % 300 === 0) {
-          this.talk = false;
-          this.show = false;
-        }
+    }
+    if (this.talk === true && state === "screen1" && showScreen2 === true) {
+      this.time++;
+      image(talk2Phase1, 0, 0);
+      if (this.time % 300 === 0) {
+        this.talk = false;
+        this.show = false;
       }
     }
-    if (this.talk === true && state === "phase2") {
+
+    if (this.talk === true && state === "phase2" && showScreen2 === true) {
+      this.time++;
+      image(talk2Phase2, 0, 0);
+      if (this.time % 300 === 0) {
+        this.talk = false;
+        this.show = false;
+      }
+    }
+    if (this.talk === true && state === "phase3" && showScreen2 === true) {
       this.time++;
       image(talk2Phase2, 0, 0);
       if (this.time % 300 === 0) {
@@ -77,5 +97,6 @@ export default class Nursebutton extends Button {
   // }
   clicked() {
     this.talk = true;
+    this.action = true;
   }
 }

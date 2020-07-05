@@ -29,6 +29,9 @@ let newsButton4 = new Newsbutton(826, 21, 131, 49);
 let nurseButton = new Nursebutton(285, 287, 85, 367);
 let nurseButton2 = new Nursebutton(188, 287, 85, 367);
 let thoughtsButton = new Thoughtsbutton(520, 285, 95, 67);
+let thoughtsButton2 = new Thoughtsbutton(620, 238, 95, 67);
+let thoughtsButton3 = new Thoughtsbutton(720, 255, 95, 67);
+let thoughtsButton4 = new Thoughtsbutton(905, 295, 95, 67);
 
 let time = 0;
 let showStartScreen = true;
@@ -90,6 +93,7 @@ let screen2;
 let message1;
 let message2;
 let message3;
+let message3Screen4;
 let screen3;
 let screen4;
 let resolution4;
@@ -103,8 +107,17 @@ let talk2Phase1;
 let talkPhase2;
 let talk2Phase2;
 let thoughtBubble;
+let thoughtBubble2;
+let thoughtBubble3;
+let thoughtBubble4;
 let thoughtBubbleHover;
+let thoughtBubbleHover2;
+let thoughtBubbleHover3;
+let thoughtBubbleHover4;
 let thought;
+let thought2;
+let thought3;
+let thought4;
 let thoughtSpeak;
 let phase2;
 let phase3;
@@ -164,6 +177,7 @@ function preload() {
   message1 = loadImage("./Bilder/Phase1-Newsanzeige(Screen1-3).png");
   message2 = loadImage("./Bilder/Phase2-Newsanzeige(Screen1-3).png");
   message3 = loadImage("./Bilder/Phase3-Newsanzeige(Screen1-3).png");
+  message3Screen4 = loadImage("./Bilder/Phase3-Newsanzeige(Screen4).png");
   screen3 = loadImage("./Bilder/Screen3.png");
   screen4 = loadImage("./Bilder/Screen4.png");
   resolution4 = loadImage("./Bilder/Ende-Screen4.png");
@@ -178,10 +192,25 @@ function preload() {
   talk2Phase2 = loadImage("./Bilder/Screen2-Krankenschwester-sprechen.png");
   watchWindow2 = loadImage("./Bilder/Screen2-Fenster-schauen.png");
   thoughtBubble = loadImage("./Bilder/Gedanken-Screens/Screen1-Gedanke1.png");
+  thoughtBubble2 = loadImage("./Bilder/Gedanken-Screens/Screen2-Gedanke1.png");
+  thoughtBubble3 = loadImage("./Bilder/Gedanken-Screens/Screen3-Gedanke1.png");
+  thoughtBubble4 = loadImage("./Bilder/Gedanken-Screens/Screen4-Gedanke2.png");
   thoughtBubbleHover = loadImage(
     "./Bilder/Gedanken-Screens/Screen1-Gedanke1.1.png"
   );
+  thoughtBubbleHover2 = loadImage(
+    "./Bilder/Gedanken-Screens/Screen2-Gedanke1.1.png"
+  );
+  thoughtBubbleHover3 = loadImage(
+    "./Bilder/Gedanken-Screens/Screen3-Gedanke1.1.png"
+  );
+  thoughtBubbleHover4 = loadImage(
+    "./Bilder/Gedanken-Screens/Screen4-Gedanke2.1.png"
+  );
   thought = loadImage("./Bilder/Gedanken-Screens/Screen1-Gedanke1.2.png");
+  thought2 = loadImage("./Bilder/Gedanken-Screens/Screen2-Gedanke1.2.png");
+  thought3 = loadImage("./Bilder/Gedanken-Screens/Screen3-Gedanke1.2.png");
+  thought4 = loadImage("./Bilder/Gedanken-Screens/Screen4-Gedanke2.2.png");
   phase2 = loadImage("./Bilder/Phase2.png");
   phase3 = loadImage("./Bilder/Phase3.png");
   //quiz = loadImage("/Image/Screen1-rätseln.png, andere Funktion aufrufen(z.B. show())");
@@ -216,7 +245,11 @@ function mouseClicked() {
   newsButton.close.mouseClicked();
   newsButton4.close.mouseClicked();
   nurseButton.mouseClicked();
+  nurseButton2.mouseClicked();
   thoughtsButton.mouseClicked();
+  thoughtsButton2.mouseClicked();
+  thoughtsButton3.mouseClicked();
+  thoughtsButton4.mouseClicked();
 }
 window.mouseClicked = mouseClicked;
 
@@ -257,14 +290,31 @@ function show() {
     if (time >= 300 && time < 550) {
       thoughtsButton.display(
         thoughtBubble,
+        thoughtBubble2,
+        thoughtBubble3,
+        thoughtBubble4,
         thoughtBubbleHover,
+        thoughtBubbleHover2,
+        thoughtBubbleHover3,
+        thoughtBubbleHover4,
         thought,
+        thought2,
+        thought3,
+        thought4,
         thoughtSpeak,
-        nextButton.get()
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
       );
     }
     //Aktionen Screen1
-    if (time >= 900 && time < 1110) {
+    if (
+      time >= 900 &&
+      time < 1110 &&
+      nurseButton.show === true &&
+      nextButton.state === "screen1"
+    ) {
       nurseButton.display(
         nurse,
         nurse2,
@@ -280,6 +330,31 @@ function show() {
       );
     }
     if (
+      time >= 900 &&
+      time < 1110 &&
+      nurseButton.show === true &&
+      nextButton.state === "phase2"
+    ) {
+      nurseButton.display(
+        nurse,
+        nurse2,
+        nurseHover,
+        nurseHover2,
+        talkPhase1,
+        talk2Phase1,
+        talkPhase2,
+        talk2Phase2,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0)
+      );
+    }
+    if (nurseButton.action === true) {
+      skala.width = skala.width + 4;
+      nurseButton.action = false;
+    }
+
+    if (
       time >= 150 &&
       newsButton.show === true &&
       nextButton.state === "screen1"
@@ -293,6 +368,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -300,6 +376,7 @@ function show() {
         skala.getArray(2)
       );
     }
+
     if (
       time >= 2600 &&
       newsButton.show === true &&
@@ -314,6 +391,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -321,8 +399,9 @@ function show() {
         skala.getArray(2)
       );
     }
+
     if (
-      time >= 6500 &&
+      time >= 4400 &&
       newsButton.show === true &&
       nextButton.state === "phase3"
     ) {
@@ -335,6 +414,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -427,7 +507,35 @@ function show() {
     skala.showScreen4 = false;
     skala.showArray[2] = skala.showScreen4;
     image(screen2, 0, 0);
-    if (time >= 3350 && time < 4460) {
+
+    //Gedanken Screen2
+    if (time >= 2300 && time < 2550) {
+      thoughtsButton2.display(
+        thoughtBubble,
+        thoughtBubble2,
+        thoughtBubble3,
+        thoughtBubble4,
+        thoughtBubbleHover,
+        thoughtBubbleHover2,
+        thoughtBubbleHover3,
+        thoughtBubbleHover4,
+        thought,
+        thought2,
+        thought3,
+        thought4,
+        thoughtSpeak,
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+    if (
+      time >= 2800 &&
+      time < 3910 &&
+      nurseButton2.show === true &&
+      nextButton.state === "screen1"
+    ) {
       nurseButton2.display(
         nurse,
         nurse2,
@@ -442,6 +550,27 @@ function show() {
         skala.getArray(0)
       );
     }
+    if (
+      time >= 2800 &&
+      time < 3910 &&
+      nurseButton2.show === true &&
+      nextButton.state === "phase2"
+    ) {
+      nurseButton2.display(
+        nurse,
+        nurse2,
+        nurseHover,
+        nurseHover2,
+        talkPhase1,
+        talk2Phase1,
+        talkPhase2,
+        talk2Phase2,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0)
+      );
+    }
+
     if (newsButton.show === true && nextButton.state === "screen1") {
       newsButton.display(
         news,
@@ -452,6 +581,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -459,6 +589,7 @@ function show() {
         skala.getArray(2)
       );
     }
+
     if (
       time >= 2600 &&
       newsButton.show === true &&
@@ -473,6 +604,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -480,8 +612,9 @@ function show() {
         skala.getArray(2)
       );
     }
+
     if (
-      time >= 6500 &&
+      time >= 4400 &&
       newsButton.show === true &&
       nextButton.state === "phase3"
     ) {
@@ -494,6 +627,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -584,13 +718,38 @@ function show() {
       skala.decrease();
     }
   }
+
+  //Screen3
   if (skala.showScreen3 === true) {
     skala.showScreen2 = false;
     skala.showArray[0] = skala.showScreen2;
     skala.showScreen4 = false;
     skala.showArray[2] = skala.showScreen4;
-
     image(screen3, 0, 0);
+
+    //Gedanken Screen3
+    if (time >= 3800 && time < 4050) {
+      thoughtsButton3.display(
+        thoughtBubble,
+        thoughtBubble2,
+        thoughtBubble3,
+        thoughtBubble4,
+        thoughtBubbleHover,
+        thoughtBubbleHover2,
+        thoughtBubbleHover3,
+        thoughtBubbleHover4,
+        thought,
+        thought2,
+        thought3,
+        thought4,
+        thoughtSpeak,
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+
     if (newsButton.show === true && nextButton.state === "phase2") {
       newsButton.display(
         news,
@@ -601,6 +760,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -608,8 +768,9 @@ function show() {
         skala.getArray(2)
       );
     }
+
     if (
-      time >= 6500 &&
+      time >= 4400 &&
       newsButton.show === true &&
       nextButton.state === "phase3"
     ) {
@@ -622,6 +783,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -689,12 +851,37 @@ function show() {
       skala.decrease();
     }
   }
+
+  //Screen4
   if (skala.showScreen4 === true) {
     nextButton.showScreen1 = false;
     skala.showScreen3 = false;
     skala.showArray[1] = skala.showScreen3;
-
     image(screen4, 0, 0);
+
+    //Gedanken Screen4
+    if (time >= 4800 && time < 4950) {
+      thoughtsButton4.display(
+        thoughtBubble,
+        thoughtBubble2,
+        thoughtBubble3,
+        thoughtBubble4,
+        thoughtBubbleHover,
+        thoughtBubbleHover2,
+        thoughtBubbleHover3,
+        thoughtBubbleHover4,
+        thought,
+        thought2,
+        thought3,
+        thought4,
+        thoughtSpeak,
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+
     if (newsButton4.show === true && nextButton.state === "phase3") {
       newsButton4.display(
         news,
@@ -705,6 +892,7 @@ function show() {
         message1,
         message2,
         message3,
+        message3Screen4,
         nextButton.getState(),
         nextButton.get(),
         skala.getArray(0),
@@ -789,17 +977,21 @@ function show() {
     // console.log(nextButton.timeStop);
     image(phase2, 0, 0);
     nextButton.display(nextHover);
-
+    newsButton.show = true;
+    nurseButton.show = true;
     // nextButton.showScreen1 = false;
   }
 
-  if (time >= 6350) {
+  //6350
+  if (time >= 4250) {
     nextButton.state = "phase3";
   }
   if (nextButton.state === "phase3" && nextButton.showPhase3 === true) {
     nextButton.timeStop = true;
     image(phase3, 0, 0);
     nextButton.display(nextHover);
+    newsButton.show = true;
+    nurseButton.show = true;
     // nextButton.showScreen1 = false;
   }
 
@@ -848,6 +1040,8 @@ function draw() {
 
   show();
   console.log(nextButton.state);
+  console.log(time);
+  // console.log(skala.getArray(0));
   // console.log(skala.getArray(1));
   // image(phase1, 0, 0);
   // nextButton.nextButton2.display(nextHover);
@@ -876,26 +1070,29 @@ function draw() {
   // image(magazineOptions2, 0, 0);
   // image(phoneOptions2, 0, 0);
   // image(nurse2, 0, 0);
+  // image(thoughtBubble2, 0, 0);
   // fill("black");
-  // rect(188, 287, 85, 367);
+  // rect(620, 238, 95, 67);
   // rect(410, 515, 36, 20);
 
   //Screen3
   // image(screen3, 0, 0);
+  // image(thoughtBubble3, 0, 0);
   // fill("black");
-  // rect(1018, 580, 119, 28);
+  // rect(720, 255, 95, 67);
 
   //Screen4
   // image(screen4, 0, 0);
   // image(news4, 0, 0);
+  // image(message3Screen4, 0, 0);
+  // image(thoughtBubble4, 0, 0);
   // fill("black");
-  // rect(826, 21, 131, 49);
+  // rect(905, 295, 95, 67);
 
   //Zufriedenheitsskala
-  // image(satisfactionBanner, 0, 0);
-  // skala1.display();
+  // image(satisfactionBanner2, 0, 0);
+  // skala.display();
   // stroke("#8f8c89");
-  // // stroke("black");
   // strokeWeight(1);
   // line(741, 46, 741, 68);
   // line(673, 46, 673, 68);
@@ -904,7 +1101,7 @@ function draw() {
   // if (time % 30 === 0) {
   //   /* % = modulo; wenn Zahl von time durch 30 geteilt wird und
   //   kein Rest (wegen === 0) übrigbleibt, wird decrease() ausgeführt */
-  //     skala1.decrease();
+  //   skala.decrease();
   // }
 }
 window.draw = draw;

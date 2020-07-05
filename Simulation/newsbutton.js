@@ -12,6 +12,13 @@ export default class Newsbutton extends Button {
         this.show = false;
       }
     };
+    this.close2 = new Button(1305, 30, 10, 10); //Werte an neuen NewsButton von Screen4 anpassen
+    this.close2.clicked = () => {
+      if (this.message === true) {
+        this.message = false;
+        this.show = false;
+      }
+    };
   }
   display(
     news,
@@ -22,16 +29,13 @@ export default class Newsbutton extends Button {
     message1,
     message2,
     message3,
+    message3Screen4,
     state,
     showScreen1,
     showScreen2,
     showScreen3,
     showScreen4
   ) {
-    // fill("black");
-    // rect(this.x, this.y, this.width, this.height);
-    // this.time++;
-    // if (this.time >= 150 && this.show === true && state === "screen1") {
     if (this.show === true && showScreen4 === false) {
       image(news, 0, 0);
     }
@@ -55,8 +59,11 @@ export default class Newsbutton extends Button {
     if (this.message === true && state === "phase2") {
       image(message2, 0, 0);
     }
-    if (this.message === true && state === "phase3") {
+    if (this.message === true && state === "phase3" && showScreen4 === false) {
       image(message3, 0, 0);
+    }
+    if (this.message === true && state === "phase3" && showScreen4 === true) {
+      image(message3Screen4, 0, 0);
     }
 
     if (

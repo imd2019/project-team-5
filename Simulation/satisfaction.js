@@ -16,7 +16,7 @@ export default class Satisfaction {
     rect(this.x, this.y, this.width, this.height);
   }
   decrease() {
-    if (this.width < 133.5) {
+    if (this.width < 133.5 && this.width >= 0) {
       this.width = this.width - 2;
     }
     if (this.width >= 133.5) {
@@ -56,7 +56,7 @@ export default class Satisfaction {
   getArray(x) {
     return this.showArray[x];
   }
-  setWidth(x) {
-    this.width = this.width + x;
-  }
+  // setWidth(x) {
+  //   this.width = this.width + x;
+  // }
 }

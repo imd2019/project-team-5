@@ -45,11 +45,14 @@ export default class Phonebutton extends Button {
     call,
     call2,
     call3,
-    visit,
-    visit2,
+    visitPhase1,
+    visitPhase2,
+    visit2Phase1,
+    visit2Phase2,
     showScreen1,
     showScreen2,
-    showScreen3
+    showScreen3,
+    state
   ) {
     if (this.hitTest(mouseX, mouseY) && showScreen1 === true) {
       image(phoneHover, 0, 0);
@@ -60,7 +63,7 @@ export default class Phonebutton extends Button {
     if (this.hitTest(mouseX, mouseY) && showScreen3 === true) {
       image(phoneHover3, 0, 0);
     }
-    if (this.phone === true && showScreen1 === true) {
+    if (this.phone === true && showScreen1 === true && state !== "phase3") {
       image(phoneOptions, 0, 0);
       if (this.optionCall.hitTest(mouseX, mouseY)) {
         image(callHover, 0, 0);
@@ -69,7 +72,7 @@ export default class Phonebutton extends Button {
         image(visitHover, 0, 0);
       }
     }
-    if (this.phone === true && showScreen2 === true) {
+    if (this.phone === true && showScreen2 === true && state !== "phase3") {
       image(phoneOptions2, 0, 0);
       if (this.optionCall2.hitTest(mouseX, mouseY)) {
         image(callHover2, 0, 0);
@@ -79,7 +82,7 @@ export default class Phonebutton extends Button {
       }
     }
 
-    if (this.call === true && showScreen1 === true) {
+    if (this.call === true && showScreen1 === true && state !== "phase3") {
       image(call, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
@@ -87,7 +90,14 @@ export default class Phonebutton extends Button {
         this.call = false;
       }
     }
-    if (this.call === true && showScreen2 === true) {
+    if (this.phone === true && showScreen1 === true && state === "phase3") {
+      image(call, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+      }
+    }
+    if (this.call === true && showScreen2 === true && state !== "phase3") {
       image(call2, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
@@ -95,16 +105,39 @@ export default class Phonebutton extends Button {
         this.call = false;
       }
     }
-    if (this.visit === true && showScreen1 === true) {
-      image(visit, 0, 0);
+    if (this.phone === true && showScreen2 === true && state === "phase3") {
+      image(call2, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+      }
+    }
+    if (this.visit === true && showScreen1 === true && state === "screen1") {
+      image(visitPhase1, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
         this.phone = false;
         this.visit = false;
       }
     }
-    if (this.visit === true && showScreen2 === true) {
-      image(visit2, 0, 0);
+    if (this.visit === true && showScreen1 === true && state === "phase2") {
+      image(visitPhase2, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+        this.visit = false;
+      }
+    }
+    if (this.visit === true && showScreen2 === true && state === "screen1") {
+      image(visit2Phase1, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+        this.visit = false;
+      }
+    }
+    if (this.visit === true && showScreen2 === true && state === "phase2") {
+      image(visit2Phase2, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
         this.phone = false;

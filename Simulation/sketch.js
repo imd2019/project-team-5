@@ -25,11 +25,14 @@ let magazineButton2 = new Magazinebutton(336, 552, 135, 57);
 let magazineButton3 = new Magazinebutton(1018, 580, 119, 28);
 let magazineButton4 = new Magazinebutton(684, 576, 119, 28);
 let newsButton = new Newsbutton(1189, 22, 131, 49);
+let newsButton4 = new Newsbutton(826, 21, 131, 49);
 let nurseButton = new Nursebutton(285, 287, 85, 367);
+let nurseButton2 = new Nursebutton(188, 287, 85, 367);
 let thoughtsButton = new Thoughtsbutton(520, 285, 95, 67);
 
 let time = 0;
 let showStartScreen = true;
+let timeStop = true;
 // let showPhase1 = false;
 
 let startScreen;
@@ -39,6 +42,7 @@ let satisfactionBanner2;
 let startHover;
 let nextHover;
 let news;
+let news4;
 let phoneHover;
 let phoneHover2;
 let phoneHover3;
@@ -50,6 +54,8 @@ let magazineHover3;
 let magazineHover4;
 let windowHover;
 let newsHover;
+let newsHover3;
+let newsHover4;
 let intro;
 let watchTv;
 let watchTv2;
@@ -64,8 +70,10 @@ let visitHover2;
 let call;
 let call2;
 let call3;
-let visit;
-let visit2;
+let visitPhase1;
+let visitPhase2;
+let visit2Phase1;
+let visit2Phase2;
 let magazineOptions;
 let magazineOptions2;
 let readHover;
@@ -80,18 +88,26 @@ let quiz3;
 let quiz4;
 let screen2;
 let message1;
+let message2;
+let message3;
 let screen3;
 let screen4;
 let resolution4;
 let phase1;
 let nurse;
+let nurse2;
 let nurseHover;
-let talk;
+let nurseHover2;
+let talkPhase1;
+let talk2Phase1;
+let talkPhase2;
+let talk2Phase2;
 let thoughtBubble;
 let thoughtBubbleHover;
 let thought;
 let thoughtSpeak;
 let phase2;
+let phase3;
 
 function preload() {
   startScreen = loadImage("./Bilder/Start-Screen.png");
@@ -101,6 +117,7 @@ function preload() {
   startHover = loadImage("./Bilder/Start-Screen-Hover.png");
   nextHover = loadImage("./Bilder/Weiter-hover.png");
   news = loadImage("./Bilder/News(Screen1-2-3).png");
+  news4 = loadImage("./Bilder/News(Screen4).png");
   phoneHover = loadImage("./Bilder/Screen1-Telefon.png");
   phoneHover2 = loadImage("./Bilder/Screen2-Telefon.png");
   phoneHover3 = loadImage("./Bilder/Screen3-Telefon.png");
@@ -112,6 +129,8 @@ function preload() {
   magazineHover4 = loadImage("./Bilder/Screen4-Rätsel.png");
   windowHover = loadImage("./Bilder/Screen1-Fenster.png");
   newsHover = loadImage("./Bilder/News-Hover(Screen1-2).png");
+  newsHover3 = loadImage("./Bilder/News-Hover(Screen3).png");
+  newsHover4 = loadImage("./Bilder/News-Hover(Screen4).png");
   intro = loadImage("./Bilder/Einleitung.png");
   watchTv = loadImage("./Bilder/Screen1-Tv-schauen.png");
   watchTv2 = loadImage("./Bilder/Screen2-TV-schauen.png");
@@ -125,8 +144,10 @@ function preload() {
   call = loadImage("./Bilder/Screen1-telefoniert.png");
   call2 = loadImage("./Bilder/Screen2-Telefoniert.png");
   call3 = loadImage("./Bilder/Screen3-telefoniert.png");
-  visit = loadImage("./Bilder/Screen1-Familie.png");
-  visit2 = loadImage("./Bilder/Screen2-Tochter-kommt.png");
+  visitPhase1 = loadImage("./Bilder/Screen1-Familie.png");
+  visitPhase2 = loadImage("./Bilder/Screen1-Familie(abPhase2).png");
+  visit2Phase1 = loadImage("./Bilder/Screen2-Familie(Phase1).png");
+  visit2Phase2 = loadImage("./Bilder/Screen2-Tochter-kommt.png");
   magazineOptions = loadImage("./Bilder/Screen1-Schublade2.png");
   magazineOptions2 = loadImage("./Bilder/Screen2-Schublade2.png");
   readHover = loadImage("./Bilder/Screen1-Schublade3.png");
@@ -141,13 +162,20 @@ function preload() {
   quiz4 = loadImage("./Bilder/Screen4-rätseln.png");
   screen2 = loadImage("./Bilder/Screen2.png");
   message1 = loadImage("./Bilder/Phase1-Newsanzeige(Screen1-3).png");
+  message2 = loadImage("./Bilder/Phase2-Newsanzeige(Screen1-3).png");
+  message3 = loadImage("./Bilder/Phase3-Newsanzeige(Screen1-3).png");
   screen3 = loadImage("./Bilder/Screen3.png");
   screen4 = loadImage("./Bilder/Screen4.png");
   resolution4 = loadImage("./Bilder/Ende-Screen4.png");
   phase1 = loadImage("./Bilder/Phase1.png");
   nurse = loadImage("./Bilder/Screen1.2.png");
+  nurse2 = loadImage("./Bilder/Screen2.1.png");
   nurseHover = loadImage("./Bilder/Screen1-Krankenschwester.png");
-  talk = loadImage("./Bilder/Screen1-Krankenschwester-sprechen.png");
+  nurseHover2 = loadImage("./Bilder/Screen2-Krankenschwester.png");
+  talkPhase1 = loadImage("./Bilder/Screen1-Krankenschwester-sprechen.png");
+  talk2Phase1 = loadImage("./Bilder/Screen2-Krankenschwester(Phase1).png");
+  talkPhase2 = loadImage("./Bilder/Screen1-Krankenschwester(abPhase2).png");
+  talk2Phase2 = loadImage("./Bilder/Screen2-Krankenschwester-sprechen.png");
   watchWindow2 = loadImage("./Bilder/Screen2-Fenster-schauen.png");
   thoughtBubble = loadImage("./Bilder/Gedanken-Screens/Screen1-Gedanke1.png");
   thoughtBubbleHover = loadImage(
@@ -155,6 +183,7 @@ function preload() {
   );
   thought = loadImage("./Bilder/Gedanken-Screens/Screen1-Gedanke1.2.png");
   phase2 = loadImage("./Bilder/Phase2.png");
+  phase3 = loadImage("./Bilder/Phase3.png");
   //quiz = loadImage("/Image/Screen1-rätseln.png, andere Funktion aufrufen(z.B. show())");
   // soundFormats("wav"); //mp3-Datei ist kleiner im Format
   // thoughtSpeak = loadSound("./Bilder/Sound/Screen1-Gedanke-gesprochen1.2.wav");
@@ -183,32 +212,45 @@ function mouseClicked() {
   magazineButton2.optionQuiz2.mouseClicked();
   windowButton.mouseClicked();
   newsButton.mouseClicked();
+  newsButton4.mouseClicked();
   newsButton.close.mouseClicked();
+  newsButton4.close.mouseClicked();
   nurseButton.mouseClicked();
   thoughtsButton.mouseClicked();
 }
 window.mouseClicked = mouseClicked;
 
 function show() {
+  //Start
   if (showStartScreen === true) {
     image(startScreen, 0, 0);
     startButton.display(startHover);
   }
+
+  //Einleitung
   if (startButton.showIntro === true) {
     showStartScreen = false;
     // nextButton.state = "intro";
     image(intro, 0, 0);
     nextButton.display(nextHover);
   }
+
+  //Phase1
   if (nextButton.state === "phase1") {
     startButton.showIntro = false;
     image(phase1, 0, 0);
     nextButton.display(nextHover);
     // showPhase1 = true;
   }
+
+  //Screen1
   if (nextButton.state === "screen1") {
     // startButton.showIntro = false;
     nextButton.showPhase1 = false;
+    skala.showScreen3 = false;
+    skala.showArray[1] = skala.showScreen3;
+    skala.showScreen4 = false;
+    skala.showArray[2] = skala.showScreen4;
     image(screen1, 0, 0);
 
     //Gedanken Screen1
@@ -223,9 +265,83 @@ function show() {
     }
     //Aktionen Screen1
     if (time >= 900 && time < 1110) {
-      nurseButton.display(nurse, nurseHover, talk);
+      nurseButton.display(
+        nurse,
+        nurse2,
+        nurseHover,
+        nurseHover2,
+        talkPhase1,
+        talk2Phase1,
+        talkPhase2,
+        talk2Phase2,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0)
+      );
     }
-    newsButton.display(news, newsHover, message1, nextButton.getState());
+    if (
+      time >= 150 &&
+      newsButton.show === true &&
+      nextButton.state === "screen1"
+    ) {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+    if (
+      time >= 2600 &&
+      newsButton.show === true &&
+      nextButton.state === "phase2"
+    ) {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+    if (
+      time >= 6500 &&
+      newsButton.show === true &&
+      nextButton.state === "phase3"
+    ) {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
     phoneButton.display(
       phoneHover,
       phoneHover2,
@@ -239,11 +355,14 @@ function show() {
       call,
       call2,
       call3,
-      visit,
-      visit2,
+      visitPhase1,
+      visitPhase2,
+      visit2Phase1,
+      visit2Phase2,
       nextButton.get(),
       skala.getArray(0),
-      skala.getArray(1)
+      skala.getArray(1),
+      nextButton.getState()
     );
     tvButton.display(
       tvHover,
@@ -298,12 +417,91 @@ function show() {
       skala.decrease();
     }
   }
+
+  //Screen2
   if (skala.showScreen2 === true) {
-    nextButton.state = false;
+    // nextButton.state = false;
     nextButton.showScreen1 = false;
+    skala.showScreen3 = false;
+    skala.showArray[1] = skala.showScreen3;
+    skala.showScreen4 = false;
+    skala.showArray[2] = skala.showScreen4;
     image(screen2, 0, 0);
-    // newsButton.display(news, newsHover);
-    newsButton.display(news, newsHover, message1, nextButton.getState());
+    if (time >= 3350 && time < 4460) {
+      nurseButton2.display(
+        nurse,
+        nurse2,
+        nurseHover,
+        nurseHover2,
+        talkPhase1,
+        talk2Phase1,
+        talkPhase2,
+        talk2Phase2,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0)
+      );
+    }
+    if (newsButton.show === true && nextButton.state === "screen1") {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+    if (
+      time >= 2600 &&
+      newsButton.show === true &&
+      nextButton.state === "phase2"
+    ) {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+    if (
+      time >= 6500 &&
+      newsButton.show === true &&
+      nextButton.state === "phase3"
+    ) {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+
     phoneButton2.display(
       phoneHover,
       phoneHover2,
@@ -317,11 +515,14 @@ function show() {
       call,
       call2,
       call3,
-      visit,
-      visit2,
+      visitPhase1,
+      visitPhase2,
+      visit2Phase1,
+      visit2Phase2,
       nextButton.get(),
       skala.getArray(0),
-      skala.getArray(1)
+      skala.getArray(1),
+      nextButton.getState()
     );
     tvButton.display(
       tvHover,
@@ -386,7 +587,49 @@ function show() {
   if (skala.showScreen3 === true) {
     skala.showScreen2 = false;
     skala.showArray[0] = skala.showScreen2;
+    skala.showScreen4 = false;
+    skala.showArray[2] = skala.showScreen4;
+
     image(screen3, 0, 0);
+    if (newsButton.show === true && nextButton.state === "phase2") {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+    if (
+      time >= 6500 &&
+      newsButton.show === true &&
+      nextButton.state === "phase3"
+    ) {
+      newsButton.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
+
     phoneButton3.display(
       phoneHover,
       phoneHover2,
@@ -400,11 +643,14 @@ function show() {
       call,
       call2,
       call3,
-      visit,
-      visit2,
+      visitPhase1,
+      visitPhase2,
+      visit2Phase1,
+      visit2Phase2,
       nextButton.get(),
       skala.getArray(0),
-      skala.getArray(1)
+      skala.getArray(1),
+      nextButton.getState()
     );
     magazineButton3.display(
       magazineHover,
@@ -444,9 +690,28 @@ function show() {
     }
   }
   if (skala.showScreen4 === true) {
+    nextButton.showScreen1 = false;
     skala.showScreen3 = false;
     skala.showArray[1] = skala.showScreen3;
+
     image(screen4, 0, 0);
+    if (newsButton4.show === true && nextButton.state === "phase3") {
+      newsButton4.display(
+        news,
+        news4,
+        newsHover,
+        newsHover3,
+        newsHover4,
+        message1,
+        message2,
+        message3,
+        nextButton.getState(),
+        nextButton.get(),
+        skala.getArray(0),
+        skala.getArray(1),
+        skala.getArray(2)
+      );
+    }
     magazineButton4.display(
       magazineHover,
       magazineHover2,
@@ -487,7 +752,12 @@ function show() {
   if (skala.showResolution4 === true) {
     skala.showScreen4 = false;
     skala.showArray[2] = skala.showScreen4;
-    image(resolution4, 0, 0);
+    nextButton.state = "End4";
+    if (nextButton.state === "End4" && nextButton.showEnd4 === true) {
+      nextButton.timeStop = true;
+      image(resolution4, 0, 0);
+      nextButton.display(nextHover);
+    }
   }
   // if (time >= 3050 && bla === true) {
   //   showPhase2 = true;
@@ -511,13 +781,37 @@ function show() {
   //   }
   // }
 
-  if (time >= 3350) {
+  if (time >= 2450) {
     nextButton.state = "phase2";
   }
   if (nextButton.state === "phase2" && nextButton.showPhase2 === true) {
+    nextButton.timeStop = true;
+    // console.log(nextButton.timeStop);
     image(phase2, 0, 0);
     nextButton.display(nextHover);
+
+    // nextButton.showScreen1 = false;
   }
+
+  if (time >= 6350) {
+    nextButton.state = "phase3";
+  }
+  if (nextButton.state === "phase3" && nextButton.showPhase3 === true) {
+    nextButton.timeStop = true;
+    image(phase3, 0, 0);
+    nextButton.display(nextHover);
+    // nextButton.showScreen1 = false;
+  }
+
+  // if (time >= 2800) {
+  //   nextButton.state = "phase3";
+  // }
+  // if (nextButton.state === "phase3" && nextButton.showPhase3 === true) {
+  //   nextButton.timeStop = true;
+  //   image(phase3, 0, 0);
+  //   nextButton.display(nextHover);
+  //   // nextButton.showScreen1 = false;
+  // }
 
   // if (startButton.showIntro === false) {
   //   if (startButton.hitTest(mouseX, mouseY)) {
@@ -545,8 +839,15 @@ function show() {
 
 function draw() {
   clear();
-  time = time + 5;
+  if (nextButton.state === "screen1") {
+    timeStop = false;
+  }
+  if (timeStop === false && nextButton.timeStop === false) {
+    time = time + 1;
+  }
+
   show();
+  console.log(nextButton.state);
   // console.log(skala.getArray(1));
   // image(phase1, 0, 0);
   // nextButton.nextButton2.display(nextHover);
@@ -574,8 +875,9 @@ function draw() {
   // image(screen2, 0, 0);
   // image(magazineOptions2, 0, 0);
   // image(phoneOptions2, 0, 0);
+  // image(nurse2, 0, 0);
   // fill("black");
-  // rect(363, 515, 36, 20);
+  // rect(188, 287, 85, 367);
   // rect(410, 515, 36, 20);
 
   //Screen3
@@ -585,8 +887,9 @@ function draw() {
 
   //Screen4
   // image(screen4, 0, 0);
+  // image(news4, 0, 0);
   // fill("black");
-  // rect(684, 576, 119, 28);
+  // rect(826, 21, 131, 49);
 
   //Zufriedenheitsskala
   // image(satisfactionBanner, 0, 0);

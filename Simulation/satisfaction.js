@@ -16,7 +16,10 @@ export default class Satisfaction {
     rect(this.x, this.y, this.width, this.height);
   }
   decrease() {
-    if (this.width >= 0) {
+    if (this.width < 133.5) {
+      this.width = this.width - 2;
+    }
+    if (this.width >= 133.5) {
       this.width = this.width - 1;
     }
     if (this.width <= 201.5 && this.width > 133.5) {
@@ -41,7 +44,7 @@ export default class Satisfaction {
       // this.showArray.push(this.showResolution4);
       this.showArray[3] = this.showResolution4;
     }
-
+    console.log(this.width);
     // fillArray();
   }
   // fillArray() {
@@ -52,5 +55,8 @@ export default class Satisfaction {
   // }
   getArray(x) {
     return this.showArray[x];
+  }
+  setWidth(x) {
+    this.width = this.width + x;
   }
 }

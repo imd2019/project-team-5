@@ -18,6 +18,7 @@ export default class Tvbutton extends Button {
       this.time++;
       if (this.time % 300 === 0) {
         this.watching = false;
+        setWidth(2);
       }
     }
     if (this.watching === true && showScreen2 === true) {
@@ -28,7 +29,9 @@ export default class Tvbutton extends Button {
       }
     }
   }
-
+  setWidth(x) {
+    this.width = this.width + x;
+  }
   clicked() {
     if (this.watching === false) {
       this.watching = true;

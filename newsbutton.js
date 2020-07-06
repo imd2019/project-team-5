@@ -19,10 +19,8 @@ export default class Newsbutton extends Button {
     this.time++;
     if (this.time >= 150 && this.show === true && state === "screen1") {
       image(news, 0, 0);
-
       if (this.hitTest(mouseX, mouseY) && this.message === false) {
         image(newsHover, 0, 0);
-
       }
       if (this.message === true) {
         image(message1, 0, 0);

@@ -189,8 +189,6 @@ function mouseClicked() {
 }
 window.mouseClicked = mouseClicked;
 
-
-
 function show() {
   if (showStartScreen === true) {
     image(startScreen, 0, 0);
@@ -385,13 +383,10 @@ function show() {
       skala.decrease();
     }
   }
-  let startLicht = false;
   if (skala.showScreen3 === true) {
     skala.showScreen2 = false;
     skala.showArray[0] = skala.showScreen2;
     image(screen3, 0, 0);
-    document.getElementById("Flackern").style.display = "block";
-    startLicht = true;
     phoneButton3.display(
       phoneHover,
       phoneHover2,
@@ -547,246 +542,11 @@ function show() {
   //   }
   // }
 }
-let telefonieren = 0;
-let telefon = document.getElementById("Telefonieren");
-
-
-function hideTele1() {
-  telefonieren++;
-  if (telefonieren > 150) {
-    telefon.style.display = "none";
-    telefonieren = 0;
-  }
-
-}
-
-
-let telefonieren3 = 0;
-let telefon3 = document.getElementById("Telefonieren");
-
-function hideTele3() {
-  telefonieren3++;
-  if (telefon3 > 100) {
-    telefon3.style.display = "none";
-    telefonieren3 = 0;
-  }
-}
-let telefoniern2 = 0;
-let telefon2 = document.getElementById("Telefonieren");
-
-function hideTele2() {
-  telefoniern2++;
-  if (telefoniern2 > 100) {
-    telefon2.style.display = "none";
-    telefoniern2 = 0;
-  }
-}
-
-let fernseher1 = 0;
-let fernseher = document.getElementById("Fernseher");
-
-function hideTv1() {
-  fernseher1++;
-  if (fernseher1 > 100) {
-    fernseher.style.display = "none";
-    fernseher1 = 0;
-  }
-}
-
-let rätsel1 = 0;
-let rätseln = document.getElementById("Rätsel");
-
-function hideRätsel1() {
-  rätsel1++;
-  if (rätsel1 > 110) {
-    rätseln.style.display = "none";
-    rätsel1 = 0;
-
-  }
-}
-
-let buch1 = 0;
-let buch = document.getElementById("Buch");
-
-function hideBuch1() {
-  buch1++;
-  if (buch1 > 100) {
-    buch.style.display = "none";
-    buch1 = 0;
-  }
-}
-
-let vogel1 = 0;
-let vogel = document.getElementById("Vogel");
-
-function hideVogel() {
-  vogel1++;
-  if (vogel1 > 200) {
-    vogel.style.display = "none";
-    vogel1 = 0;
-
-  }
-}
-
-let sprechblasek2 = 0;
-let sprechblase = document.getElementById("SprechblaseK2");
-
-function hideSprechblaseK2() {
-  sprechblasek2++;
-  if (sprechblasek2 > 100) {
-    sprechblase.style.display = "none";
-    sprechblasek2 = 0;
-  }
-}
-
-let sprechblasef1 = 0;
-let Sprechblasefamilie = document.getElementById("SprechblaseK2");
-
-function hideSprechblaseF1() {
-  sprechblasef1++;
-  if (sprechblasef1 > 100) {
-    Sprechblasefamilie.style.display = "none";
-    sprechblasef1 = 0;
-  }
-}
-
-let sprechblasef2 = 0;
-let Sprechblase2 = document.getElementById("SprechblaseTochter2");
-
-function hideSprechblaseF2() {
-  sprechblasef2++;
-  if (sprechblasef2 > 100) {
-    Sprechblase2.style.display = "none";
-    sprechblasef2 = 0;
-
-
-  }
-}
-
-let flackern2 = 0;
-let flacker = document.getElementById("Flackern");
-
-function hideFlackern() {
-  flackern2++;
-  if (flackern2 > 100) {
-    flacker.style.display = "none";
-    flackern2 = 0;
-  }
-}
-
-let rätseln2 = 0;
-let rätsel2 = document.getElementById("Rätsel");
-
-function hideRätseln2() {
-  rätsel2++;
-  if (rätseln2 > 100) {
-    rätsel2.style.display = "none";
-    rätseln2 = 0;
-  }
-}
-let rätseln3 = 0;
-let rätsel3 = document.getElementById("RätselArm");
-
-function hideRätseln3() {
-  rätseln3++;
-  if (rätseln3 > 100) {
-    rätsel3.style.display = "none";
-    rätsel3 = 0;
-  }
-}
-
-let licht = 0;
-let flackern = document.getElementById("Flackern");
-
-function hideLicht() {
-  licht++;
-  if (flackern > 100) {
-    licht.style.display = "none";
-    flackern = 0;
-
-  }
-}
-
-function hideWippen3() {
-
-}
-
-function hideWippen4() {
-
-}
-
-
-
-function hideWasserhahn() {
-
-}
-
-
 
 function draw() {
   clear();
   time = time + 5;
   show();
-
-  if (phoneButton.startTele1) {
-    hideTele1();
-
-  }
-  if (tvButton.startTv1) {
-    hideTv1();
-  }
-
-  if (quiz.startRätsel) {
-    hideRätsel1();
-  }
-
-  if (read.startBuch) {
-    hideBuch1();
-  }
-
-  if (windowButton.startVogel) {
-    hideVogel();
-  }
-
-  if (nurseButton.startSprechblaseK2) {
-    hideSprechblaseK2();
-  }
-
-  if (visit.startF1) {
-    hideSprechblaseF1();
-  }
-
-  if (watchTv2.startTv2) {
-    hideFlackern();
-  }
-
-  if (visit2.startF2) {
-    hideSprechblaseF2();
-  }
-  if (call2.startTele2) {
-    hideTele2();
-  }
-
-  if (quiz2.startRätsel2) {
-    hideRätseln2();
-  }
-
-  if (call3.startTele3) {
-    hideTele3();
-  }
-
-  if (quiz3.startRätsel3) {
-    hideRätseln3();
-  }
-  // if (showScreen3.startLicht) {
-  //   hideLicht();
-  // }
-
-  // console.log(quiz.start);
-
-
-
-  //console.log(phoneButton.start);
   // console.log(skala.getArray(1));
   // image(phase1, 0, 0);
   // nextButton.nextButton2.display(nextHover);

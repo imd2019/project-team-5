@@ -1,0 +1,113 @@
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+/* Hilfe von Max */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* viewpointwidth,viewpointheight = beschreibt Fläche von Browser, die man sieht (100%) */
+}
+
+#Telefonieren {
+  transform: translate(10vw, 50vh);
+  position: absolute;
+  display: none;
+  margin-left: 1em;
+  padding-bottom: 40px;
+  height: 500px;
+}
+
+#Vogel {
+  position: absolute;
+  display: none;
+}
+
+#Buch {
+  position: absolute;
+  display: none;
+}
+
+#Rätsel {
+  position: absolute;
+  display: none;
+}
+
+#Fernseher {
+  position: absolute;
+  display: none;
+
+}
+
+#SprechblaseK2 {
+  position: absolute;
+  display: none;
+}
+
+#SprechblaseTele2 {
+  position: absolute;
+  display: none;
+}
+
+#SprechblaseTochter2 {
+  position: absolute;
+  display: none;
+  height: 1500px;
+  width: 500px;
+
+}
+
+#RätselArm {
+  position: absolute;
+  display: none;
+}
+
+#Lampe {
+  position: absolute;
+  display: none;
+}
+
+#Blume {
+  position: absolute;
+  display: none;
+}
+
+#Flackern {
+  position: absolute;
+  display: none;
+}
+
+#Telefonieren3 {
+  position: absolute;
+  display: none;
+}
+
+#Wippen3 {
+  position: absolute;
+  display: none;
+}
+
+#Wippen4 {
+  position: absolute;
+  display: none;
+}
+
+#Wasserhahn {
+  position: absolute;
+  display: none;
+}
+
+#p5canvas canvas {
+  width: 100% !important;
+  max-width: 1344px;
+  height: auto !important;
+}
+
+
+/* !important = höhere Priorität? Canvas soll immer höhe von...und weite von...haben, egal wie es skaliert wird */

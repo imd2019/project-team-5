@@ -7,9 +7,6 @@ export default class Nextbutton extends Button {
     // this.showPhase1 = false;
     this.showScreen1 = false;
     this.showPhase2 = true;
-    this.showPhase3 = true;
-    this.showEnd4 = true;
-    this.timeStop = false;
     this.state = "intro";
     // this.nextButton2 = new Button(992, 637, 292, 58);
     // this.nextButton2.clicked = () => {
@@ -44,25 +41,10 @@ export default class Nextbutton extends Button {
       this.state = "phase1";
     } else if (this.state === "phase1") {
       this.state = "screen1";
-      // this.showScreen1 = true;
     } else if (this.state === "phase2") {
-      // this.state = "phase3";
-      this.timeStop = false;
-      this.showPhase2 = false;
-    } else if (this.state === "phase3") {
       //this.state = "phase3";
-      this.timeStop = false;
-      this.showPhase3 = false;
+      this.showPhase2 = false;
     }
-    //  else if (this.state === "End4") {
-    //   this.state = "resolution";
-    //   this.timeStop = false;
-    //   this.showEnd4 = false;
-    // } else if (this.state === "resolution") {
-    //   this.state = "tips";
-    //   this.timeStop = false;
-    //   // this.showEnd4 = false;
-    // }
     console.log(this.state);
     // if (this.startButton.showIntro === true) {
     //   this.showPhase1 = true;

@@ -3,9 +3,17 @@ export default class Magazinebutton extends Button {
   constructor(x, y, width, height) {
     super(x, y, width, height);
     this.magazine = false;
+    this.startRätsel = false;
+    this.startBuch = false;
+    this.startRätsel2 = false;
+    this.startBuch2 = false;
+    this.startRätsel3 = false;
+    //this.time = true;
     this.optionRead = new Button(912, 432, 36, 20);
     this.optionRead.clicked = () => {
       if ((this.magazine = true)) {
+        document.getElementById("Buch").style.display = "block";
+        this.startBuch = true;
         this.read = true;
       }
     };
@@ -13,18 +21,26 @@ export default class Magazinebutton extends Button {
     this.optionRead2.clicked = () => {
       if ((this.magazine = true)) {
         this.read = true;
+        document.getElementById("Buch").style.display = "block";
+        this.startBuch2 = true;
+        this.time = false;
+
       }
     };
     this.optionQuiz = new Button(959, 432, 36, 20);
     this.optionQuiz.clicked = () => {
       if ((this.magazine = true)) {
         this.quiz = true;
+
       }
     };
     this.optionQuiz2 = new Button(410, 515, 36, 20);
     this.optionQuiz2.clicked = () => {
       if ((this.magazine = true)) {
         this.quiz = true;
+        document.getElementById("Rätsel").style.display = "block";
+        this.startRätsel2 = true;
+
       }
     };
     this.read = false;
@@ -69,9 +85,12 @@ export default class Magazinebutton extends Button {
       image(magazineOptions, 0, 0);
       if (this.optionRead.hitTest(mouseX, mouseY)) {
         image(readHover, 0, 0);
+
       }
       if (this.optionQuiz.hitTest(mouseX, mouseY)) {
         image(quizHover, 0, 0);
+        document.getElementById("Rätsel").style.display = "block";
+        this.startRätsel = true;
       }
     }
     if (this.magazine === true && showScreen2 === true) {
@@ -116,12 +135,27 @@ export default class Magazinebutton extends Button {
       }
     }
     if (this.magazine === true && showScreen3 === true) {
-      this.time++;
       image(quiz3, 0, 0);
+      document.getElementById("RätselArm").style.display = "block";
+      this.startRätsel3 = true;
+
+    }
+    if (this.magazine === true && showScreen3 === true) {
+      this.time++;
+      // image(quiz3, 0, 0);
+      // document.getElementById("RätselArm").style.display = "block";
+      // this.startRätsel3 = true;
       if (this.time % 90 === 0) {
         this.magazine = false;
       }
     }
+    // if (this.magazine === true && showScreen3 === true) {
+    //   image(quiz3, 0, 0);
+    //   document.getElementById("RätselArm").style.display = "block";
+    //   this.startRätsel3 = true;
+    // }
+
+
     if (this.magazine === true && showScreen4 === true) {
       console.log(showScreen4);
       this.time++;

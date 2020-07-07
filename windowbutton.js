@@ -5,6 +5,7 @@ export default class Windowbutton extends Nextbutton {
     super(x, y, width, height);
     this.looking = false;
     this.time = 0;
+    this.influence = false;
   }
   display(windowHover, watchWindow, watchWindow2, showScreen1, showScreen2) {
     if (this.hitTest(mouseX, mouseY)) {
@@ -30,6 +31,7 @@ export default class Windowbutton extends Nextbutton {
   clicked() {
     if (this.looking === false) {
       this.looking = true;
+      this.influence = true;
     }
   }
 }

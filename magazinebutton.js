@@ -7,29 +7,42 @@ export default class Magazinebutton extends Button {
     this.optionRead.clicked = () => {
       if ((this.magazine = true)) {
         this.read = true;
+        this.influenceRead = true;
       }
     };
     this.optionRead2 = new Button(363, 515, 36, 20);
     this.optionRead2.clicked = () => {
       if ((this.magazine = true)) {
         this.read = true;
+        this.influenceRead = true;
       }
     };
     this.optionQuiz = new Button(959, 432, 36, 20);
     this.optionQuiz.clicked = () => {
       if ((this.magazine = true)) {
         this.quiz = true;
+        this.influenceQuiz = true;
+        // document.getElementById("Rätsel").style.display = "block";
+        // this.startRätsel = true;
       }
     };
     this.optionQuiz2 = new Button(410, 515, 36, 20);
     this.optionQuiz2.clicked = () => {
       if ((this.magazine = true)) {
         this.quiz = true;
+        this.influenceQuiz = true;
+        // document.getElementById("Rätsel2").style.display = "block";
+        // this.startRätsel2 = true;
       }
     };
     this.read = false;
     this.quiz = false;
     this.time = 0;
+    this.influenceRead = false;
+    this.influenceQuiz = false;
+    this.influence = false;
+    // this.startRätsel = false;
+    // this.startRätsel2 = false;
   }
   display(
     magazineHover,
@@ -123,7 +136,6 @@ export default class Magazinebutton extends Button {
       }
     }
     if (this.magazine === true && showScreen4 === true) {
-      console.log(showScreen4);
       this.time++;
       image(quiz4, 0, 0);
       if (this.time % 90 === 0) {
@@ -135,13 +147,7 @@ export default class Magazinebutton extends Button {
   clicked() {
     if (this.magazine === false) {
       this.magazine = true;
-
-      // if (this.optionRead.clicked() === true && this.read === false) {
-      //   this.read = true;
-      // }
-      // if (this.optionQuiz.clicked() === true && this.quiz === false) {
-      //   this.quiz = true;
-      // }
+      this.influence = true;
     }
   }
 }

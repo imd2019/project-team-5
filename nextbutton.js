@@ -1,31 +1,29 @@
 import Button from "./button.js";
-// import Startbutton from "./startbutton.js";
 export default class Nextbutton extends Button {
   constructor(x, y, width, height) {
     super(x, y, width, height);
-    // this.startButton.showIntro = true;
-    // this.showPhase1 = false;
     this.showScreen1 = false;
     this.showPhase2 = true;
+    this.showPhase3 = true;
+    this.showEnd1 = true;
+    this.showEnd23 = true;
+    this.showEnd4 = true;
+    this.showResolution = false;
+    this.showTips = false;
+    this.showRestart = false;
+    this.timeStop = false;
     this.state = "intro";
-    // this.nextButton2 = new Button(992, 637, 292, 58);
-    // this.nextButton2.clicked = () => {
-    //   this.showPhase1 = false;
-    //   this.showScreen1 = true;
-    // };
   }
-  display(nextHover, screen1) {
-    // fill("white");
-    // rect(this.x, this.y, this.width, this.height);
-    if (this.hitTest(mouseX, mouseY)) {
+  display(nextHover, explanationHover) {
+    if (
+      (this.hitTest(mouseX, mouseY) && this.showResolution === false) ||
+      (this.hitTest(mouseX, mouseY) && this.showTips === false)
+    ) {
       image(nextHover, 0, 0);
     }
-    // if (this.nextButton2.hitTest(mouseX, mouseY)) {
-    //   image(nextHover, 0, 0);
-    // }
-    // if (this.showScreen1 === true && this.showPhase1 === false) {
-    //   image(screen1, 0, 0);
-    // }
+    if (this.showResolution === true && this.hitTest(mouseX, mouseY)) {
+      image(explanationHover, 0, 0);
+    }
   }
   get() {
     return this.showScreen1;
@@ -33,27 +31,39 @@ export default class Nextbutton extends Button {
   getState() {
     return this.state;
   }
-  // get(x) {
-  //   return showScreen[x];
-  // }
+
   clicked() {
     if (this.state === "intro") {
+      this.state = "showPhase1";
+    } else if (this.state === "showPhase1") {
       this.state = "phase1";
-    } else if (this.state === "phase1") {
-      this.state = "screen1";
+      this.showScreen1 = true;
     } else if (this.state === "phase2") {
-      //this.state = "phase3";
+      this.timeStop = false;
       this.showPhase2 = false;
+    } else if (this.state === "phase3") {
+      this.timeStop = false;
+      this.showPhase3 = false;
+    } else if (this.state === "end1") {
+      this.timeStop = false;
+      this.showEnd1 = false;
+      this.showResolution = true;
+      this.state = "resolution";
+    } else if (this.state === "end23") {
+      this.timeStop = false;
+      this.showEnd23 = false;
+      this.showResolution = true;
+      this.state = "resolution";
+    } else if (this.state === "end4") {
+      this.timeStop = false;
+      this.showEnd4 = false;
+      this.showResolution = true;
+      this.state = "resolution";
+    } else if (this.state === "resolution") {
+      this.showResolution = false;
+      this.showRestart = true;
+      this.state = "tips";
+      this.showTips = true;
     }
-    console.log(this.state);
-    // if (this.startButton.showIntro === true) {
-    //   this.showPhase1 = true;
-    // }
-    // if (this.showPhase1 === true) {
-    //   this.showPhase1 = false;
-    //   this.showScreen1 = true;
-    // }
-    this.showScreen1 = true;
-    // this.showPhase1 = true;
   }
 }

@@ -8,29 +8,49 @@ export default class Phonebutton extends Button {
     this.optionCall.clicked = () => {
       if (this.phone === true) {
         this.call = true;
+        this.influencePhone = true;
+        // document.getElementById("Telefonieren").style.display = "block"; //block=sichtbar
+        // this.startTele1 = true;
       }
     };
     this.optionCall2 = new Button(366, 375, 36, 20);
     this.optionCall2.clicked = () => {
       if (this.phone === true) {
         this.call = true;
+        this.influencePhone = true;
+        // document.getElementById("Telefonieren").style.display = "block";
+        // this.startTele2 = true;
       }
     };
     this.optionVisit = new Button(418, 485, 36, 20);
     this.optionVisit.clicked = () => {
       if (this.phone === true) {
         this.visit = true;
+        this.influenceFamily = true;
+        // document.getElementById("SprechblaseTochter2").style.display = "block";
+        // this.startFam1 = true;
       }
     };
     this.optionVisit2 = new Button(407, 375, 36, 20);
     this.optionVisit2.clicked = () => {
       if (this.phone === true) {
         this.visit = true;
+        this.influenceFamily = true;
+        // document.getElementById("SprechblaseTochter2").style.display = "block";
+        // this.startFam2 = true;
       }
     };
     this.call = false;
     this.visit = false;
     this.time = 0;
+    this.influenceFamily = false;
+    this.influencePhone = false;
+    this.influence = false;
+    // this.startTele1 = false;
+    // this.startTele2 = false;
+    // this.startTele3 = false;
+    // this.startFam1 = false;
+    // this.startFam2 = false;
   }
   display(
     phoneHover,
@@ -45,11 +65,14 @@ export default class Phonebutton extends Button {
     call,
     call2,
     call3,
-    visit,
-    visit2,
+    visitPhase1,
+    visitPhase2,
+    visit2Phase1,
+    visit2Phase2,
     showScreen1,
     showScreen2,
-    showScreen3
+    showScreen3,
+    state
   ) {
     if (this.hitTest(mouseX, mouseY) && showScreen1 === true) {
       image(phoneHover, 0, 0);
@@ -60,7 +83,7 @@ export default class Phonebutton extends Button {
     if (this.hitTest(mouseX, mouseY) && showScreen3 === true) {
       image(phoneHover3, 0, 0);
     }
-    if (this.phone === true && showScreen1 === true) {
+    if (this.phone === true && showScreen1 === true && state !== "phase3") {
       image(phoneOptions, 0, 0);
       if (this.optionCall.hitTest(mouseX, mouseY)) {
         image(callHover, 0, 0);
@@ -69,7 +92,7 @@ export default class Phonebutton extends Button {
         image(visitHover, 0, 0);
       }
     }
-    if (this.phone === true && showScreen2 === true) {
+    if (this.phone === true && showScreen2 === true && state !== "phase3") {
       image(phoneOptions2, 0, 0);
       if (this.optionCall2.hitTest(mouseX, mouseY)) {
         image(callHover2, 0, 0);
@@ -79,7 +102,7 @@ export default class Phonebutton extends Button {
       }
     }
 
-    if (this.call === true && showScreen1 === true) {
+    if (this.call === true && showScreen1 === true && state !== "phase3") {
       image(call, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
@@ -87,7 +110,16 @@ export default class Phonebutton extends Button {
         this.call = false;
       }
     }
-    if (this.call === true && showScreen2 === true) {
+    if (this.phone === true && showScreen1 === true && state === "phase3") {
+      image(call, 0, 0);
+      // document.getElementById("Telefonieren").style.display = "block";
+      // this.startTele1 === true;
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+      }
+    }
+    if (this.call === true && showScreen2 === true && state !== "phase3") {
       image(call2, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
@@ -95,24 +127,52 @@ export default class Phonebutton extends Button {
         this.call = false;
       }
     }
-    if (this.visit === true && showScreen1 === true) {
-      image(visit, 0, 0);
+    if (this.phone === true && showScreen2 === true && state === "phase3") {
+      image(call2, 0, 0);
+      // document.getElementById("Telefonieren").style.display = "block";
+      // this.startTele2 === true;
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+      }
+    }
+    if (this.visit === true && showScreen1 === true && state === "phase1") {
+      image(visitPhase1, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
         this.phone = false;
         this.visit = false;
       }
     }
-    if (this.visit === true && showScreen2 === true) {
-      image(visit2, 0, 0);
+    if (this.visit === true && showScreen1 === true && state === "phase2") {
+      image(visitPhase2, 0, 0);
       this.time++;
       if (this.time % 90 === 0) {
         this.phone = false;
         this.visit = false;
       }
     }
+    if (this.visit === true && showScreen2 === true && state === "phase1") {
+      image(visit2Phase1, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+        this.visit = false;
+      }
+    }
+    if (this.visit === true && showScreen2 === true && state === "phase2") {
+      image(visit2Phase2, 0, 0);
+      this.time++;
+      if (this.time % 90 === 0) {
+        this.phone = false;
+        this.visit = false;
+      }
+    }
+
     if (this.phone === true && showScreen3 === true) {
       image(call3, 0, 0);
+      // document.getElementById("Telefonieren").style.display = "block";
+      // this.startTele3 === true;
       this.time++;
       if (this.time % 90 === 0) {
         this.phone = false;
@@ -123,7 +183,8 @@ export default class Phonebutton extends Button {
   clicked() {
     if (this.phone === false) {
       this.phone = true;
-      // console.log(this.phone);
+      this.influence = true;
+      // this.startTele3 = true;
     }
   }
 }
